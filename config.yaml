@@ -8,3 +8,10 @@ data_labels:
   - threat
   - insult
   - identity_hate
+  
+transformer_model: bert-base-cased
+
+max_token_count: 512
+
+n_epochs: 10
+batch_size: 12

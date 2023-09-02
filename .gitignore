@@ -4,3 +4,7 @@ practice/
 
 # Data
 data/
+
+# Pytorch
+checkpoints/
+lightning_logs/
