@@ -3,21 +3,14 @@
 
 ## Overview
 
-### Title: Multi-label Classification of Questions on online forums such as StackOverflow/Quora  
+### Title: Multi-label Classification of Toxic Comments  
 
 ### Description
 
-Aim of this project is to classify the questions posted on online forums such as StackOverflow and/or Quora into multiple tags and possibly create new tags. This will help in better organization of questions and will help in better search results.
+Aim of this project is to classify the comments collected from [Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge) available on [Kaggle](https://www.kaggle.com/).
 
-This analysis can include one or more of the following tasks:
+The comments are classified into six categories: toxic, severe_toxic, obscene, threat, insult, identity_hate.
 
-    - data collection
-    - keyword extraction
-    - classification of questions into tags
-    - topic identification
-    - clustering of questions
-    - creating new tags
-    - ... 
 
 Author:  
 Mudabbira Mushtary
