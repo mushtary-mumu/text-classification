@@ -1,10 +1,13 @@
 from torch.utils.data import Dataset, DataLoader
 import pytorch_lightning as pl
 from transformers import AutoModel, AdamW, get_cosine_schedule_with_warmup
+from transformers import AutoTokenizer
 import torch.nn as nn
+import pandas as pd
 import math
 from torchmetrics.functional.classification import auroc
 import torch.nn.functional as F
+import torch
 
 
 class ToxicCommentsDataset(Dataset):
@@ -12,14 +15,15 @@ class ToxicCommentsDataset(Dataset):
     def __init__(
                 self,
                 config,
+                tokenizer,
                 data: pd.DataFrame,
-                tokenizer: BertTokenizer,
                 max_token_len: int = 128,
               ):
         self.config = config
         self.tokenizer = tokenizer
         self.data = data
         self.max_token_len = max_token_len
+
 
   # def _prepare_data(self):
   #   data = pd.read_csv(self.data_path)
@@ -72,10 +76,10 @@ class ToxicCommentDataModule(pl.LightningDataModule):
 
   def setup(self, stage = None):
     if stage in (None, "fit"):
-      self.train_dataset = ToxicCommentsDatasetNew(self.config, self.train_df, tokenizer=self.tokenizer)
-      self.val_dataset = ToxicCommentsDatasetNew(self.config, self.val_df, tokenizer=self.tokenizer)
+      self.train_dataset = ToxicCommentsDataset(self.config, self.tokenizer, self.train_df, )
+      self.val_dataset = ToxicCommentsDataset(self.config, self.tokenizer, self.val_df, )
     if stage == 'predict':
-      self.val_dataset = ToxicCommentsDatasetNew(self.val_path, attributes=self.attributes, tokenizer=self.tokenizer, sample=None)
+      self.val_dataset = ToxicCommentsDataset(self.config, self.tokenizer, self.val_df)
 
   def train_dataloader(self):
     return DataLoader(self.train_dataset, batch_size = self.batch_size, num_workers=4, shuffle=True)
@@ -85,8 +89,8 @@ class ToxicCommentDataModule(pl.LightningDataModule):
 
   def predict_dataloader(self):
     return DataLoader(self.val_dataset, batch_size = self.batch_size, num_workers=4, shuffle=False)
-    
-    
+
+
 class ToxicCommentClassifier(pl.LightningModule):
 
   def __init__(self, config: dict):
@@ -144,5 +148,6 @@ class ToxicCommentClassifier(pl.LightningModule):
   #     losses.append(loss)
   #   avg_loss = torch.mean(torch.stack(losses))
   #   self.log("avg_val_loss", avg_loss)
+
 
 
