@@ -28,7 +28,7 @@ The dataset is first balanced by sampling the comments from the clean category t
 
 Pytorch lightning is used for training the models since it provides a high level interface for Pytorch. It also provides a lot of useful features like automatic checkpointing, automatic logging, automatic gradient accumulation, etc.
 
-The models are trained on Google Colab. MEASURED TRAINING RUNTIME for the RoBERTa model was: 1h 8m 31s on a Tesla T4 GPU.
+The models are trained on Google Colab. Measured training runtime for the RoBERTa model was: 1h 8m 31s on a Tesla T4 GPU.
 
 The figures below show the epochs, training loss, validation loss on the train and validation sets for the RoBERTa model as displayed on the pytorch lightning tensor board.
 
