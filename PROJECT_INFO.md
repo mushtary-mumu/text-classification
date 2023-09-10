@@ -1,4 +1,4 @@
-### Description
+### Methodology and Data
 
 This project approaches the task of multi-labeltext classification from two different perspectives. The first approach is based on the traditional machine learning techniques and the second approach is based on deep learning techniques.
 
@@ -30,7 +30,7 @@ Pytorch lightning is used for training the models since it provides a high level
 
 The models are trained on Google Colab. Measured training runtime for the RoBERTa model was: 1h 8m 31s on a Tesla T4 GPU.
 
-The figures below show the epochs, training loss, validation loss on the train and validation sets for the RoBERTa model as displayed on the pytorch lightning tensor board.
+The figures below show the epochs, training loss, validation loss on the train and validation sets for the RoBERTa model as displayed on the pytorch lightning tensorboard.
 
 *Epochs:*
 
