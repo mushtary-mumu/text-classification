@@ -11,58 +11,92 @@ import torch
 
 
 class ToxicCommentsDataset(Dataset):
+    
+  """
+  Dataset for toxic comments
 
-    def __init__(
-                self,
-                config,
-                tokenizer,
-                data: pd.DataFrame,
-                max_token_len: int = 128,
-              ):
-        self.config = config
-        self.tokenizer = tokenizer
-        self.data = data
-        self.max_token_len = max_token_len
+  Parameters
+  ----------
+  config : dict
+      Config dictionary.
+  tokenizer : tokenizer
+      Tokenizer.
+  data : pandas dataframe
+      Dataframe containing the data.
+  max_token_len : int, optional 
+      Maximum token length. The default is 128.
 
+  Returns
+  -------
+  dict
+      Dictionary containing the input ids, attention mask and labels.
 
-  # def _prepare_data(self):
-  #   data = pd.read_csv(self.data_path)
-  #   data['unhealthy'] = np.where(data['healthy'] == 1, 0, 1)
-  #   if self.sample is not None:
-  #     unhealthy = data.loc[data[attributes].sum(axis=1) > 0]
-  #     clean = data.loc[data[attributes].sum(axis=1) == 0]
-  #     self.data = pd.concat([unhealthy, clean.sample(self.sample, random_state=7)])
-  #   else:
-  #     self.data = data
+  """
 
-    def __len__(self):
-      return len(self.data)
+  def __init__(
+              self,
+              config,
+              tokenizer,
+              data: pd.DataFrame,
+              max_token_len: int = 128,
+            ):
+      self.config = config
+      self.tokenizer = tokenizer
+      self.data = data
+      self.max_token_len = max_token_len
 
-    def __getitem__(self, index):
-        data_row = self.data.iloc[index]
+  def __len__(self):
+    return len(self.data)
 
-        comment_text = data_row.comment_text
-        labels = data_row[self.config["data_labels"]]
+  def __getitem__(self, index):
+      data_row = self.data.iloc[index]
 
-        encoding = self.tokenizer.encode_plus(
-                                              comment_text,
-                                              add_special_tokens=True,
-                                              max_length=self.max_token_len,
-                                              return_token_type_ids=False,
-                                              padding="max_length",
-                                              truncation=True,
-                                              return_attention_mask=True,
-                                              return_tensors='pt',
-                                            )
-        return dict(
-                    # comment_text=comment_text,
-                    input_ids=encoding["input_ids"].flatten(),
-                    attention_mask=encoding["attention_mask"].flatten(),
-                    labels=torch.FloatTensor(labels)
-                  )
+      comment_text = data_row.comment_text
+      labels = data_row[self.config["data_labels"]]
+
+      encoding = self.tokenizer.encode_plus(
+                                            comment_text,
+                                            add_special_tokens=True,
+                                            max_length=self.max_token_len,
+                                            return_token_type_ids=False,
+                                            padding="max_length",
+                                            truncation=True,
+                                            return_attention_mask=True,
+                                            return_tensors='pt',
+                                          )
+      return dict(
+                  input_ids=encoding["input_ids"].flatten(),
+                  attention_mask=encoding["attention_mask"].flatten(),
+                  labels=torch.FloatTensor(labels)
+                )
 
 
 class ToxicCommentDataModule(pl.LightningDataModule):
+
+  """
+  Data module for toxic comments
+
+  Parameters
+  ----------
+  config : dict
+      Config dictionary.
+  train_df : pandas dataframe 
+      Dataframe containing the training data.
+  val_df : pandas dataframe
+      Dataframe containing the validation data.
+  batch_size : int, optional
+      Batch size. The default is 16.
+  max_token_length : int, optional
+      Maximum token length. The default is 128.
+  model_name : str, optional
+      Model name. The default is 'roberta-base'.
+
+  Returns
+  -------
+  pl.LightningDataModule
+  
+  """
+
 
   def __init__(self, config, train_df, val_df, batch_size: int = 16, max_token_length: int = 128,  model_name='roberta-base'):
     super().__init__()
@@ -92,6 +126,20 @@ class ToxicCommentDataModule(pl.LightningDataModule):
 
 
 class ToxicCommentClassifier(pl.LightningModule):
+
+  """
+  Model for toxic comments
+
+  Parameters
+  ----------
+  config : dict
+      Config dictionary.
+
+  Returns
+  -------
+  pl.LightningModule
+
+  """
 
   def __init__(self, config: dict):
     super().__init__()
@@ -140,14 +188,3 @@ class ToxicCommentClassifier(pl.LightningModule):
     warmup_steps = math.floor(total_steps * self.config['warmup'])
     scheduler = get_cosine_schedule_with_warmup(optimizer, warmup_steps, total_steps)
     return [optimizer],[scheduler]
-
-  # def validation_epoch_end(self, outputs):
-  #   losses = []
-  #   for output in outputs:
-  #     loss = output['val_loss'].detach().cpu()
-  #     losses.append(loss)
-  #   avg_loss = torch.mean(torch.stack(losses))
-  #   self.log("avg_val_loss", avg_loss)
-
-
-
