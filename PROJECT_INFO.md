@@ -28,7 +28,7 @@ The dataset is split into train and test sets. The train set contains 159571 com
 
 Pytorch lightning is used for training the models since it provides a high level interface for Pytorch. It also provides a lot of useful features like automatic checkpointing, automatic logging, automatic gradient accumulation, etc.
 
-The models are trained on Google Colab. 
+The models are trained on Google Colab. MEASURED TRAINING RUNTIME: 1h 8m 31s
 
 ### Results
 
