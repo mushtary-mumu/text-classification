@@ -3,9 +3,17 @@
 
 ## Project Title
 
-## **Multi-label Text Classification of Toxic Comments Using Transformer- and Non-transformer-based Models**
+## Multi-label Text Classification of Toxic Comments Using Transformer- and Non-transformer-based Models
 
 #### *OSE Final Project, University of Bonn SS 2023*
+#### Author
+*Mudabbira Mushtary\
+Student of M.Sc. Economics\
+University of Bonn*
+
+### Questions and Answers
+
+The answers to the questions from the course are available here: [OSE: Answers to Questions](OSE_2023_Mushtary_Q_and_A.pdf)
 
 ### Description
 
@@ -13,9 +21,9 @@ Aim of this project is to classify the comments collected from [Toxic Comment Cl
 
 The comments are classified into six categories: toxic, severe_toxic, obscene, threat, insult, identity_hate.
 
-Detailed information on the dataset used, the methods applied and the results obtained are available here: [Project Information: Detailed](PROJECT_INFO.md)
+Detailed information on the dataset used, the methods applied and the results obtained are available here :arrow_right: [Methods and Results](PROJECT_INFO.md)
 
-# How to run the project:
+### How to run the project:
 
 The following steps are to be followed to run the project:
 
@@ -37,16 +45,12 @@ repository = "final-project-mushtary-mumu"
 ```
 `token` is the personal access token generated from github. The steps to generate the token are given available here: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
 
-
 4. Navigate to the repository and open the notebook titled `multilabel_classification.ipynb`
 
 5. Once the notebook is open, change the runtime to GPU by going to `Runtime` -> `Change runtime type` -> `Hardware accelerator` -> `GPU` -> `Save`
 
 6. Run the notebook
 
-### Author
-Mudabbira Mushtary\
-Student of M.Sc. Economics\
-University of Bonn
+
 
 
