@@ -7,7 +7,7 @@ The traditional machine learning techniques used are:
 - Naive Bayes
 
 The deep learning techniques used are:
-- Fine tuning a pretrained BERT model and then using it for classification
+- Fine tuning a pretrained RoBERTa model and then using it for classification
 
 The dataset used for this project is available on [Kaggle](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/data).
 
@@ -24,23 +24,30 @@ The dataset is highly imbalanced. The following table shows the number of commen
 | Insult | 7877 |
 | Identity Hate | 1405 |
 
-The dataset is split into train and test sets. The train set contains 159571 comments and the test set contains 63978 comments.
+The dataset is first balanced by sampling the comments from the clean category to equal the number of toxic comments. Then, the balanced dataset is split into train and test sets. The train set contains 24337 comments and the test set contains 8113 comments.
 
 Pytorch lightning is used for training the models since it provides a high level interface for Pytorch. It also provides a lot of useful features like automatic checkpointing, automatic logging, automatic gradient accumulation, etc.
 
-The models are trained on Google Colab. MEASURED TRAINING RUNTIME: 1h 8m 31s
+The models are trained on Google Colab. MEASURED TRAINING RUNTIME for the RoBERTa model was: 1h 8m 31s on a Tesla T4 GPU.
 
 ### Results
 
-The following table shows the results obtained on the test set. The results are obtained by averaging the results obtained on each category. The results are obtained by using the F1 score as the metric.
+The following table shows the results obtained on the test set. The results are obtained by averaging the results obtained on each category using the F1-score metric.
 
-| Model | F1 score |
-| --- | --- |
-| Logistic Regression | 0.755 |
-| Naive Bayes | 0.755 |
-| BERT | 0.866 |
+Categories | Naive Bayes | Logistic Regression | RoBERTa
+--- | --- | --- | ---
+Toxic | 0.841 | 0.858 | 0.91
+Severe Toxic | 0.0 | 0.334 | 0.35
+Obscene | 0.549 | 0.770 | 0.83
+Threat | 0.0 | 0.165 | 0.00
+Insult | 0.396 | 0.646 | 0.75
+Identity Hate | 0.0 | 0.271 | 0.00
 
-The results obtained by using the BERT model are better than the results obtained by using the traditional machine learning techniques. This is because the BERT model is able to capture the context of the comments and hence is able to classify the comments better.
+If we look at the results obtained on each category, we can see that the results obtained by using the RoBERTa model are better than the results obtained by using the traditional machine learning techniques.
+
+The following figure shows the AUROC curve obtained on the test set by using the RoBERTa model. The curve is obtained by averaging the AUROC curves obtained on each category. It shows that the model is able to classify the comments into different categories with high accuracy. The model performs best on the toxic category and worst on the threat and identity hate categories.
+
+![AUROC Curve](plots/AUROC.png)
 
 ### References
 
