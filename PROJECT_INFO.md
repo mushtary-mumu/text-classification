@@ -30,6 +30,21 @@ Pytorch lightning is used for training the models since it provides a high level
 
 The models are trained on Google Colab. MEASURED TRAINING RUNTIME for the RoBERTa model was: 1h 8m 31s on a Tesla T4 GPU.
 
+The figures below show the epochs, training loss, validation loss on the train and validation sets for the RoBERTa model as displayed on the pytorch lightning tensor board.
+
+*Epochs:*
+
+![Epochs](plots/epoch.png)
+
+*Training Loss:*
+
+![Training Loss](plots/train_loss.png)
+
+*Validation Loss:*
+
+![Validation Loss](plots/validation_loss.png)
+
+
 ### Results
 
 The following table shows the results obtained on the test set. The results are obtained by averaging the results obtained on each category using the F1-score metric.
