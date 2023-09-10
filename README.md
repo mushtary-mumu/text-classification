@@ -5,11 +5,11 @@
 
 ## Multi-label Text Classification of Toxic Comments Using Transformer- and Non-transformer-based Models
 
-#### *OSE Final Project, University of Bonn SS 2023*
-#### Author
-*Mudabbira Mushtary\
-Student of M.Sc. Economics\
-University of Bonn*
+>#### *OSE Final Project, University of Bonn SS 2023*
+>#### Author
+>*Mudabbira Mushtary\
+>Student of M.Sc. Economics\
+>University of Bonn*
 
 ### Questions and Answers
 
