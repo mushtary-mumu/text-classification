@@ -1,7 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/R1vgPUT1)
 
 
-## Project Title
+#### Project Title
 
 ## Multi-label Text Classification of Toxic Comments Using Transformer- and Non-transformer-based Models
 
@@ -13,7 +13,7 @@ University of Bonn*
 
 ### Questions and Answers
 
-The answers to the questions from the course are available here: [OSE: Answers to Questions](OSE_2023_Mushtary_Q_and_A.pdf)
+The answers to the [questions](https://dl-intro.readthedocs.io/en/latest/questions.html) from the course are available here: [OSE: Answers to Questions](OSE_2023_Mushtary_Q_and_A.pdf)
 
 ### Description
 
